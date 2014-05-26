@@ -59,7 +59,9 @@
             this.Controls.Add(this.btn_start);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frm_Start";
+            this.ShowInTaskbar = false;
             this.Text = "Form1";
+            this.TopMost = true;
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.frm_Start_MouseDown);
             this.ResumeLayout(false);
 

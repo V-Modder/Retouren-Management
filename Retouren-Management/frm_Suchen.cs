@@ -12,6 +12,7 @@ namespace Retouren_Management
     public partial class frm_Suchen : Form
     {
         private frm_Start start;
+        private bool bGoBack = true;
 
         public frm_Suchen(frm_Start Start)
         {
@@ -34,12 +35,14 @@ namespace Retouren_Management
         {
             frm_Kunde knd = new frm_Kunde(Convert.ToInt32(txt_rechnungsnr.Text), start);
             knd.Show();
+            bGoBack = false;
             this.Close();
         }
 
         private void frm_Suchen_FormClosing(object sender, FormClosingEventArgs e)
         {
-            start.Show();
+            if(e.CloseReason == CloseReason.UserClosing && bGoBack)
+                start.Show();
         }
     }
 }
