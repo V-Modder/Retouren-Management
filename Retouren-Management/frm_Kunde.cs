@@ -95,18 +95,36 @@ namespace Retouren_Management
 
         private void btn_erstattung_Click(object sender, EventArgs e)
         {
-            StreamWriter sw = new StreamWriter(Path.Combine(Retouren_Management.Program.Settings.Outputfolder, txt_rechnungsnr.Text + ".txt"));
-            sw.Write(createTextFile() + "Erstattung!");
-            sw.Close();
+            try
+            {
+                StreamWriter sw = new StreamWriter(Path.Combine(Retouren_Management.Program.Settings.Outputfolder, txt_rechnungsnr.Text + ".txt"));
+                sw.Write(createTextFile() + "Erstattung!");
+                sw.Close();
+                start.Show();
+                this.Close();
+            }
+            catch (Exception ee)
+            {
+                MessageBox.Show(ee.Message);
+            }
         }
 
         private void btn_umtausch_Click(object sender, EventArgs e)
         {
-            frm_Umtausch umtausch = new frm_Umtausch();
-            umtausch.ShowDialog();
-            StreamWriter sw = new StreamWriter(Path.Combine(Retouren_Management.Program.Settings.Outputfolder, txt_rechnungsnr.Text + ".txt"));
-            sw.Write(createTextFile() + "Umtausch:\n" + umtausch.sMessage);
-            sw.Close();
+            try
+            {
+                frm_Umtausch umtausch = new frm_Umtausch();
+                umtausch.ShowDialog();
+                StreamWriter sw = new StreamWriter(Path.Combine(Retouren_Management.Program.Settings.Outputfolder, txt_rechnungsnr.Text + ".txt"));
+                sw.Write(createTextFile() + "Umtausch:\n" + umtausch.sMessage);
+                sw.Close();
+                start.Show();
+                this.Close();
+            }
+            catch (Exception ee)
+            {
+                MessageBox.Show(ee.Message);
+            }
         }
     }
 }
