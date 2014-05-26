@@ -47,32 +47,42 @@ namespace Retouren_Management
                     break;
                 case Keys.F5:
                     rdb_s.Checked = true;
+                    this.Close();
                     break;
                 case Keys.F6:
                     rdb_m.Checked = true;
+                    this.Close();
                     break;
                 case Keys.F7:
                     rdb_l.Checked = true;
+                    this.Close();
                     break;
                 case Keys.F8:
                     rdb_xl.Checked = true;
+                    this.Close();
                     break;
                 case Keys.F9:
                     rdb_xxl.Checked = true;
+                    this.Close();
                     break;
                 case Keys.F10:
                     rdb_3xl.Checked = true;
+                    this.Close();
                     break;
                 case Keys.F11:
                     rdb_4xl.Checked = true;
+                    this.Close();
                     break;
                 case Keys.F12:
                     rdb_5xl.Checked = true;
+                    this.Close();
                     break;
                 case Keys.F13:
                     rdb_massanfertigung.Checked = true;
+                    this.Close();
                     break;
             }
+            
         }
     }
 }
