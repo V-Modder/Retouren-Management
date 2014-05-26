@@ -93,7 +93,7 @@
             // rdb_3xl
             // 
             this.rdb_3xl.AutoSize = true;
-            this.rdb_3xl.Location = new System.Drawing.Point(114, 36);
+            this.rdb_3xl.Location = new System.Drawing.Point(113, 36);
             this.rdb_3xl.Name = "rdb_3xl";
             this.rdb_3xl.Size = new System.Drawing.Size(44, 17);
             this.rdb_3xl.TabIndex = 4;
@@ -105,7 +105,7 @@
             // rdb_4xl
             // 
             this.rdb_4xl.AutoSize = true;
-            this.rdb_4xl.Location = new System.Drawing.Point(114, 59);
+            this.rdb_4xl.Location = new System.Drawing.Point(113, 59);
             this.rdb_4xl.Name = "rdb_4xl";
             this.rdb_4xl.Size = new System.Drawing.Size(44, 17);
             this.rdb_4xl.TabIndex = 5;
@@ -117,7 +117,7 @@
             // rdb_5xl
             // 
             this.rdb_5xl.AutoSize = true;
-            this.rdb_5xl.Location = new System.Drawing.Point(114, 82);
+            this.rdb_5xl.Location = new System.Drawing.Point(113, 82);
             this.rdb_5xl.Name = "rdb_5xl";
             this.rdb_5xl.Size = new System.Drawing.Size(44, 17);
             this.rdb_5xl.TabIndex = 6;
@@ -201,10 +201,12 @@
             this.Controls.Add(this.rdb_m);
             this.Controls.Add(this.rdb_s);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frm_Umtausch";
             this.Text = "frm_Umtausch";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frm_Umtausch_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

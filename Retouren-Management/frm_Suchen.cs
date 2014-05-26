@@ -22,7 +22,9 @@ namespace Retouren_Management
 
         private void txt_rechnungsnr_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.F2)
+                this.Close();
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.F4)
                 this.Suchen();
         }
 

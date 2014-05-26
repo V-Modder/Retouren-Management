@@ -95,6 +95,11 @@ namespace Retouren_Management
 
         private void btn_erstattung_Click(object sender, EventArgs e)
         {
+            Erstattung();
+        }
+
+        private void Erstattung()
+        {
             try
             {
                 StreamWriter sw = new StreamWriter(Path.Combine(Retouren_Management.Program.Settings.Outputfolder, txt_rechnungsnr.Text + ".txt"));
@@ -111,6 +116,11 @@ namespace Retouren_Management
 
         private void btn_umtausch_Click(object sender, EventArgs e)
         {
+            Umtausch();
+        }
+
+        private void Umtausch()
+        {
             try
             {
                 frm_Umtausch umtausch = new frm_Umtausch();
@@ -124,6 +134,23 @@ namespace Retouren_Management
             catch (Exception ee)
             {
                 MessageBox.Show(ee.Message);
+            }
+        }
+
+        private void frm_Kunde_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch(e.KeyCode)
+            {
+                case Keys.F2:
+                    start.Show();
+                    this.Close();
+                    break;
+                case Keys.F3:
+                    Umtausch();
+                    break;
+                case Keys.F4:
+                    Erstattung();
+                    break;
             }
         }
     }

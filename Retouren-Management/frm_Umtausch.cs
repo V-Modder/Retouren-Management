@@ -37,5 +37,42 @@ namespace Retouren_Management
         {
             sMessage = txt_sonstiges.Text;
         }
+
+        private void frm_Umtausch_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.F3:
+                    this.Close();
+                    break;
+                case Keys.F5:
+                    rdb_s.Checked = true;
+                    break;
+                case Keys.F6:
+                    rdb_m.Checked = true;
+                    break;
+                case Keys.F7:
+                    rdb_l.Checked = true;
+                    break;
+                case Keys.F8:
+                    rdb_xl.Checked = true;
+                    break;
+                case Keys.F9:
+                    rdb_xxl.Checked = true;
+                    break;
+                case Keys.F10:
+                    rdb_3xl.Checked = true;
+                    break;
+                case Keys.F11:
+                    rdb_4xl.Checked = true;
+                    break;
+                case Keys.F12:
+                    rdb_5xl.Checked = true;
+                    break;
+                case Keys.F13:
+                    rdb_massanfertigung.Checked = true;
+                    break;
+            }
+        }
     }
 }

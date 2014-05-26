@@ -315,11 +315,13 @@
             this.Controls.Add(this.txt_rechnungsnr);
             this.Controls.Add(this.lbl_rechnungsnr);
             this.Enabled = false;
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.Name = "frm_Kunde";
             this.Text = "frm_Kunde";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frm_Kunde_FormClosing);
             this.Load += new System.EventHandler(this.frm_Kunde_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frm_Kunde_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_artikel)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
