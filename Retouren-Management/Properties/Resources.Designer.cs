@@ -59,14 +59,5 @@ namespace Retouren_Management.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die 81e8eb97457983aadef32425482d0068 ähnelt.
-        /// </summary>
-        internal static string Hash {
-            get {
-                return ResourceManager.GetString("Hash", resourceCulture);
-            }
-        }
     }
 }

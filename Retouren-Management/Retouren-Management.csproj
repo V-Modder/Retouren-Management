@@ -81,6 +81,12 @@
     <Compile Include="frm_Start.Designer.cs">
       <DependentUpon>frm_Start.cs</DependentUpon>
     </Compile>
+    <Compile Include="frm_Umtausch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_Umtausch.Designer.cs">
+      <DependentUpon>frm_Umtausch.cs</DependentUpon>
+    </Compile>
     <Compile Include="MySettings.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -98,6 +104,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frm_Start.resx">
       <DependentUpon>frm_Start.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_Umtausch.resx">
+      <DependentUpon>frm_Umtausch.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

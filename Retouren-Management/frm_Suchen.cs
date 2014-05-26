@@ -44,5 +44,10 @@ namespace Retouren_Management
             if(e.CloseReason == CloseReason.UserClosing && bGoBack)
                 start.Show();
         }
+
+        private void frm_Suchen_Load(object sender, EventArgs e)
+        {
+            txt_rechnungsnr.Focus();
+        }
     }
 }

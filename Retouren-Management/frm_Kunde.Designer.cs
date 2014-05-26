@@ -46,8 +46,15 @@
             this.lbl_ort = new System.Windows.Forms.Label();
             this.txt_land = new System.Windows.Forms.TextBox();
             this.lbl_land = new System.Windows.Forms.Label();
-            this.chk_artikel = new System.Windows.Forms.CheckedListBox();
-            this.btn_weiter = new System.Windows.Forms.Button();
+            this.btn_erstattung = new System.Windows.Forms.Button();
+            this.lbl_artikel = new System.Windows.Forms.Label();
+            this.lbl_zurueck = new System.Windows.Forms.Label();
+            this.txt_zuruck = new System.Windows.Forms.TextBox();
+            this.btn_umtausch = new System.Windows.Forms.Button();
+            this.dgv_artikel = new System.Windows.Forms.DataGridView();
+            this.artikelnr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.vkpreis = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_artikel)).BeginInit();
             this.SuspendLayout();
             // 
             // lbl_rechnungsnr
@@ -203,29 +210,92 @@
             this.lbl_land.TabIndex = 18;
             this.lbl_land.Text = "Land :";
             // 
-            // chk_artikel
+            // btn_erstattung
             // 
-            this.chk_artikel.FormattingEnabled = true;
-            this.chk_artikel.Location = new System.Drawing.Point(16, 146);
-            this.chk_artikel.Name = "chk_artikel";
-            this.chk_artikel.Size = new System.Drawing.Size(541, 139);
-            this.chk_artikel.TabIndex = 20;
+            this.btn_erstattung.Location = new System.Drawing.Point(482, 463);
+            this.btn_erstattung.Name = "btn_erstattung";
+            this.btn_erstattung.Size = new System.Drawing.Size(75, 23);
+            this.btn_erstattung.TabIndex = 21;
+            this.btn_erstattung.Text = "Erstattung";
+            this.btn_erstattung.UseVisualStyleBackColor = true;
+            this.btn_erstattung.Click += new System.EventHandler(this.btn_erstattung_Click);
             // 
-            // btn_weiter
+            // lbl_artikel
             // 
-            this.btn_weiter.Location = new System.Drawing.Point(482, 291);
-            this.btn_weiter.Name = "btn_weiter";
-            this.btn_weiter.Size = new System.Drawing.Size(75, 23);
-            this.btn_weiter.TabIndex = 21;
-            this.btn_weiter.UseVisualStyleBackColor = true;
+            this.lbl_artikel.AutoSize = true;
+            this.lbl_artikel.Location = new System.Drawing.Point(12, 154);
+            this.lbl_artikel.Name = "lbl_artikel";
+            this.lbl_artikel.Size = new System.Drawing.Size(36, 13);
+            this.lbl_artikel.TabIndex = 23;
+            this.lbl_artikel.Text = "Artikel";
+            // 
+            // lbl_zurueck
+            // 
+            this.lbl_zurueck.AutoSize = true;
+            this.lbl_zurueck.Location = new System.Drawing.Point(12, 321);
+            this.lbl_zurueck.Name = "lbl_zurueck";
+            this.lbl_zurueck.Size = new System.Drawing.Size(41, 13);
+            this.lbl_zurueck.TabIndex = 24;
+            this.lbl_zurueck.Text = "Zurück";
+            // 
+            // txt_zuruck
+            // 
+            this.txt_zuruck.Location = new System.Drawing.Point(12, 338);
+            this.txt_zuruck.Multiline = true;
+            this.txt_zuruck.Name = "txt_zuruck";
+            this.txt_zuruck.Size = new System.Drawing.Size(545, 119);
+            this.txt_zuruck.TabIndex = 25;
+            // 
+            // btn_umtausch
+            // 
+            this.btn_umtausch.Location = new System.Drawing.Point(384, 463);
+            this.btn_umtausch.Name = "btn_umtausch";
+            this.btn_umtausch.Size = new System.Drawing.Size(75, 23);
+            this.btn_umtausch.TabIndex = 26;
+            this.btn_umtausch.Text = "Umtausch";
+            this.btn_umtausch.UseVisualStyleBackColor = true;
+            this.btn_umtausch.Click += new System.EventHandler(this.btn_umtausch_Click);
+            // 
+            // dgv_artikel
+            // 
+            this.dgv_artikel.AllowUserToAddRows = false;
+            this.dgv_artikel.AllowUserToDeleteRows = false;
+            this.dgv_artikel.AllowUserToResizeRows = false;
+            this.dgv_artikel.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_artikel.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.artikelnr,
+            this.vkpreis});
+            this.dgv_artikel.Location = new System.Drawing.Point(12, 171);
+            this.dgv_artikel.Name = "dgv_artikel";
+            this.dgv_artikel.ReadOnly = true;
+            this.dgv_artikel.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dgv_artikel.Size = new System.Drawing.Size(545, 150);
+            this.dgv_artikel.TabIndex = 27;
+            // 
+            // artikelnr
+            // 
+            this.artikelnr.HeaderText = "Artikel Nr";
+            this.artikelnr.Name = "artikelnr";
+            this.artikelnr.ReadOnly = true;
+            this.artikelnr.Width = 200;
+            // 
+            // vkpreis
+            // 
+            this.vkpreis.HeaderText = "VK-Preis";
+            this.vkpreis.Name = "vkpreis";
+            this.vkpreis.ReadOnly = true;
             // 
             // frm_Kunde
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(581, 319);
-            this.Controls.Add(this.btn_weiter);
-            this.Controls.Add(this.chk_artikel);
+            this.ClientSize = new System.Drawing.Size(581, 495);
+            this.Controls.Add(this.dgv_artikel);
+            this.Controls.Add(this.btn_umtausch);
+            this.Controls.Add(this.txt_zuruck);
+            this.Controls.Add(this.lbl_zurueck);
+            this.Controls.Add(this.lbl_artikel);
+            this.Controls.Add(this.btn_erstattung);
             this.Controls.Add(this.txt_land);
             this.Controls.Add(this.lbl_land);
             this.Controls.Add(this.txt_ort);
@@ -250,6 +320,7 @@
             this.Text = "frm_Kunde";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frm_Kunde_FormClosing);
             this.Load += new System.EventHandler(this.frm_Kunde_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_artikel)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -275,7 +346,13 @@
         private System.Windows.Forms.Label lbl_ort;
         private System.Windows.Forms.TextBox txt_land;
         private System.Windows.Forms.Label lbl_land;
-        private System.Windows.Forms.CheckedListBox chk_artikel;
-        private System.Windows.Forms.Button btn_weiter;
+        private System.Windows.Forms.Button btn_erstattung;
+        private System.Windows.Forms.Label lbl_artikel;
+        private System.Windows.Forms.Label lbl_zurueck;
+        private System.Windows.Forms.TextBox txt_zuruck;
+        private System.Windows.Forms.Button btn_umtausch;
+        private System.Windows.Forms.DataGridView dgv_artikel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn artikelnr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn vkpreis;
     }
 }

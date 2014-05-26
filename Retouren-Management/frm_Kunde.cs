@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace Retouren_Management
 {
@@ -54,15 +55,16 @@ namespace Retouren_Management
                     iBestellung = myReader["tBestellung_kBestellung"].ToString();
                 }
                 myReader.Close();
-                myCommand = new SqlCommand(@"select tArtikel_kArtikel
-                                         from tbestellpos
-                                         where tBestellung_kBestellung=" + iBestellung, myConnection);
+                myCommand = new SqlCommand(@"select tArtikel_kArtikel, fVKPreis
+                                            from tbestellpos
+                                            where tBestellung_kBestellung=" + iBestellung, myConnection);
                 myReader = myCommand.ExecuteReader();
                 while (myReader.Read())
                 {
-                    chk_artikel.Items.Add(myReader["tArtikel_kArtikel"].ToString());
+                    dgv_artikel.Rows.Add(myReader["tArtikel_kArtikel"].ToString(), myReader["fVKPreis"].ToString());
                 }
                 myReader.Close();
+                txt_zuruck.Focus();
             }
             catch (Exception ee)
             {
@@ -73,6 +75,38 @@ namespace Retouren_Management
         private void frm_Kunde_FormClosing(object sender, FormClosingEventArgs e)
         {
             start.Show();
+        }
+
+        private string createTextFile()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendFormat("Datum: %s\n\n", DateTime.Now.Date.ToShortDateString());
+            sb.AppendFormat("Rechnungs-Nr: %s\n", txt_rechnungsnr);
+            sb.AppendFormat("Kunden-Nr   : %s\n", txt_kundennr);
+            sb.AppendFormat("%s\n%s %s\n%s\n%s, %s\n%s", txt_firma.Text, txt_vorname.Text, txt_name.Text, txt_strasse.Text, txt_plz.Text, txt_ort.Text, txt_land.Text);
+            sb.AppendLine("\nArtikel\n");
+            foreach (DataGridViewRow row in dgv_artikel.Rows)
+            {
+                sb.AppendLine(row.Cells[0].ToString() + "\t" + row.Cells[1].ToString());
+            }
+            sb.AppendFormat("\nArtikel zurück\n%s\n", txt_zuruck.Text);
+            return sb.ToString();
+        }
+
+        private void btn_erstattung_Click(object sender, EventArgs e)
+        {
+            StreamWriter sw = new StreamWriter(Path.Combine(Retouren_Management.Program.Settings.Outputfolder, txt_rechnungsnr.Text + ".txt"));
+            sw.Write(createTextFile() + "Erstattung!");
+            sw.Close();
+        }
+
+        private void btn_umtausch_Click(object sender, EventArgs e)
+        {
+            frm_Umtausch umtausch = new frm_Umtausch();
+            umtausch.ShowDialog();
+            StreamWriter sw = new StreamWriter(Path.Combine(Retouren_Management.Program.Settings.Outputfolder, txt_rechnungsnr.Text + ".txt"));
+            sw.Write(createTextFile() + "Umtausch:\n" + umtausch.sMessage);
+            sw.Close();
         }
     }
 }
