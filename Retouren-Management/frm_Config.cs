@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Security.Cryptography;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Retouren_Management
@@ -23,7 +23,8 @@ namespace Retouren_Management
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog();
             if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                txt_output.Text = fbd.SelectedPath;
+                if(Directory.Exists(fbd.SelectedPath))
+                    txt_output.Text = fbd.SelectedPath;
         }
 
         /// <summary>
@@ -33,16 +34,13 @@ namespace Retouren_Management
         /// <param name="e"></param>
         private void btn_save_Click(object sender, EventArgs e)
         {
-            using (Rijndael myRijndael = Rijndael.Create())
-            {
-                Retouren_Management.Program.Settings.DbPath = txt_dbpath.Text;
-                Retouren_Management.Program.Settings.Database = txt_db.Text;
-                Retouren_Management.Program.Settings.Dbuser = txt_user.Text;
-                Retouren_Management.Program.Settings.Dbpass = txt_pass.Text;
-                Retouren_Management.Program.Settings.Outputfolder = txt_output.Text;
-                Retouren_Management.Program.Settings.Save();
-                Application.Restart();
-            }
+            Retouren_Management.Program.Settings.DbPath = txt_dbpath.Text;
+            Retouren_Management.Program.Settings.Database = txt_db.Text;
+            Retouren_Management.Program.Settings.Dbuser = txt_user.Text;
+            Retouren_Management.Program.Settings.Dbpass = txt_pass.Text;
+            Retouren_Management.Program.Settings.Outputfolder = txt_output.Text;
+            Retouren_Management.Program.Settings.Save();
+            Application.Restart();
         }
     }
 }
