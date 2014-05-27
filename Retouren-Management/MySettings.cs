@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
+﻿using System.IO;
 using System.Web.Script.Serialization;
 
-namespace Retouren_Management
+namespace ApplicationSettings
 {
     public class MySettings : AppSettings<MySettings>
     {
@@ -15,30 +11,45 @@ namespace Retouren_Management
         private string outputfolder;
         private string database;
 
+        /// <summary>
+        /// Gibt den Pfad zur Datenbank wieder, oder legt diesen fest
+        /// </summary>
         public string DbPath
         {
             get { return dbPath; }
             set { dbPath = value; }
         }
 
+        /// <summary>
+        /// Gibt den Buntzer der Datenbank wieder, oder legt diesen fest
+        /// </summary>
         public string Dbuser
         {
             get { return dbuser; }
             set { dbuser = value; }
         }
 
+        /// <summary>
+        /// Gibt das Passwort der Datenbank wieder, oder legt dieses fest
+        /// </summary>
         public string Dbpass
         {
             get { return dbpass; }
             set { dbpass = value; }
         }
 
+        /// <summary>
+        /// Gibt den Ausgabeordner an, oder legt diesen Fest
+        /// </summary>
         public string Outputfolder
         {
             get { return outputfolder; }
             set { outputfolder = value; }
         }
 
+        /// <summary>
+        /// Gibt den Name der Datenbank an, oder legt diesen Fest
+        /// </summary>
         public string Database
         {
             get { return database; }

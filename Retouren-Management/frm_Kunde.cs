@@ -1,28 +1,36 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.IO;
+using System.Text;
+using System.Windows.Forms;
 
 namespace Retouren_Management
 {
     public partial class frm_Kunde : Form
     {
-        private int kndnr = 0;
+        #region Klassen Variablen
+        private int rechnr = 0;
         private frm_Start start;
+        #endregion
 
-        public frm_Kunde(int KundenNr, frm_Start Start)
+        #region Form Handling
+        /// <summary>
+        /// Konstruktor
+        /// </summary>
+        /// <param name="RechnungsNr">Die Rechnungs-Nr aus frm_Suchen</param>
+        /// <param name="Start">Das aufrufende Hauptformular</param>
+        public frm_Kunde(int RechnungsNr, frm_Start Start)
         {
             InitializeComponent();
-            this.kndnr = KundenNr;
+            this.rechnr = RechnungsNr;
             this.start = Start;
         }
 
+        /// <summary>
+        /// frm_Kunde wird geöffnet
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void frm_Kunde_Load(object sender, EventArgs e)
         {
             SqlConnection myConnection = new SqlConnection("server=" + Retouren_Management.Program.Settings.DbPath +
@@ -38,7 +46,7 @@ namespace Retouren_Management
                                                     from trechnung
                                                     inner join tkunde
                                                     on trechnung.tKunde_kKunde=tkunde.kkunde
-                                                    where trechnung.crechnungsnr=" + kndnr.ToString(), myConnection);
+                                                    where trechnung.crechnungsnr=" + rechnr.ToString(), myConnection);
                 SqlDataReader myReader = myCommand.ExecuteReader();
                 string iBestellung = "0";
                 while (myReader.Read())
@@ -72,11 +80,65 @@ namespace Retouren_Management
             }
         }
 
+        /// <summary>
+        /// frm_Kunde wird geschlossen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void frm_Kunde_FormClosing(object sender, FormClosingEventArgs e)
         {
             start.Show();
         }
+        
+        /// <summary>
+        /// Erkennt ob eine Taste grdrückt wurde, während das Form den Fokus hat
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frm_Kunde_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.F2:
+                    start.Show();
+                    this.Close();
+                    break;
+                case Keys.F3:
+                    Umtausch();
+                    break;
+                case Keys.F4:
+                    Erstattung();
+                    break;
+            }
+        }
 
+        /// <summary>
+        /// btn_erstattung wurde gedrückt
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btn_erstattung_Click(object sender, EventArgs e)
+        {
+            Erstattung();
+        }
+
+        /// <summary>
+        /// btn_umtausch wurde gedrückt
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btn_umtausch_Click(object sender, EventArgs e)
+        {
+            Umtausch();
+        }
+        #endregion
+
+
+        #region Klassen Methoden
+        /// <summary>
+        /// Generiert eine Textdatei, die die Daten des Kundens, der Artikel, der Retoure und das Datum enthält
+        /// </summary>
+        /// <returns>Die Textdatei als formatierter String</returns>
         private string createTextFile()
         {
             StringBuilder sb = new StringBuilder();
@@ -93,11 +155,9 @@ namespace Retouren_Management
             return sb.ToString();
         }
 
-        private void btn_erstattung_Click(object sender, EventArgs e)
-        {
-            Erstattung();
-        }
-
+        /// <summary>
+        /// Erstellt eine Textdatei und fügt ein Vermerk zur Erstattung bei
+        /// </summary>
         private void Erstattung()
         {
             try
@@ -114,11 +174,9 @@ namespace Retouren_Management
             }
         }
 
-        private void btn_umtausch_Click(object sender, EventArgs e)
-        {
-            Umtausch();
-        }
-
+        /// <summary>
+        /// Erstellt eine Textdatei und fügt ein Vermerk auf die neue Größe hinzu
+        /// </summary>
         private void Umtausch()
         {
             try
@@ -136,22 +194,6 @@ namespace Retouren_Management
                 MessageBox.Show(ee.Message);
             }
         }
-
-        private void frm_Kunde_KeyDown(object sender, KeyEventArgs e)
-        {
-            switch(e.KeyCode)
-            {
-                case Keys.F2:
-                    start.Show();
-                    this.Close();
-                    break;
-                case Keys.F3:
-                    Umtausch();
-                    break;
-                case Keys.F4:
-                    Erstattung();
-                    break;
-            }
-        }
+        #endregion
     }
 }

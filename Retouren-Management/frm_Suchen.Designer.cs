@@ -73,6 +73,7 @@
             this.Text = "Suchen";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frm_Suchen_FormClosing);
             this.Load += new System.EventHandler(this.frm_Suchen_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frm_Suchen_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
