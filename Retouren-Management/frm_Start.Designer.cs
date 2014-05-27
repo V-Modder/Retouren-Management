@@ -29,34 +29,39 @@
         private void InitializeComponent()
         {
             this.btn_start = new System.Windows.Forms.Button();
-            this.chk_move = new System.Windows.Forms.CheckBox();
+            this.pic_doc = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_doc)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_start
             // 
+            this.btn_start.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_start.Image = global::Retouren_Management.Properties.Resources.Button;
             this.btn_start.Location = new System.Drawing.Point(0, 0);
             this.btn_start.Name = "btn_start";
-            this.btn_start.Size = new System.Drawing.Size(116, 50);
+            this.btn_start.Size = new System.Drawing.Size(318, 47);
             this.btn_start.TabIndex = 0;
-            this.btn_start.Text = "Retoure";
             this.btn_start.UseVisualStyleBackColor = true;
             this.btn_start.Click += new System.EventHandler(this.btn_start_Click);
+            this.btn_start.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btn_start_MouseDown);
             // 
-            // chk_move
+            // pic_doc
             // 
-            this.chk_move.Location = new System.Drawing.Point(117, 40);
-            this.chk_move.Margin = new System.Windows.Forms.Padding(0);
-            this.chk_move.Name = "chk_move";
-            this.chk_move.Size = new System.Drawing.Size(10, 10);
-            this.chk_move.TabIndex = 1;
-            this.chk_move.UseVisualStyleBackColor = true;
+            this.pic_doc.Image = global::Retouren_Management.Properties.Resources.Pin;
+            this.pic_doc.Location = new System.Drawing.Point(262, 16);
+            this.pic_doc.Name = "pic_doc";
+            this.pic_doc.Size = new System.Drawing.Size(15, 15);
+            this.pic_doc.TabIndex = 2;
+            this.pic_doc.TabStop = false;
+            this.pic_doc.Click += new System.EventHandler(this.pic_doc_Click);
             // 
             // frm_Start
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(130, 50);
-            this.Controls.Add(this.chk_move);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.ClientSize = new System.Drawing.Size(319, 48);
+            this.Controls.Add(this.pic_doc);
             this.Controls.Add(this.btn_start);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frm_Start";
@@ -66,6 +71,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frm_Start_FormClosing);
             this.Load += new System.EventHandler(this.frm_Start_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.frm_Start_MouseDown);
+            ((System.ComponentModel.ISupportInitialize)(this.pic_doc)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -73,7 +79,7 @@
         #endregion
 
         private System.Windows.Forms.Button btn_start;
-        private System.Windows.Forms.CheckBox chk_move;
+        private System.Windows.Forms.PictureBox pic_doc;
     }
 }
 

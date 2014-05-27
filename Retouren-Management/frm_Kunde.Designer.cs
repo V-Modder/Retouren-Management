@@ -265,6 +265,7 @@
             this.dgv_artikel.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.artikelnr,
             this.vkpreis});
+            this.dgv_artikel.Enabled = false;
             this.dgv_artikel.Location = new System.Drawing.Point(12, 171);
             this.dgv_artikel.Name = "dgv_artikel";
             this.dgv_artikel.ReadOnly = true;
