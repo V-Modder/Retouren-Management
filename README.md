@@ -1,5 +1,8 @@
 #Retouren-Management
 
+##ToDo
+Datenbankverbing sowie Zugangsdaten verschlüsseln<br /><br /><br />
+
 ##Bedienungs Hinweise
 
 ###Allgemein
