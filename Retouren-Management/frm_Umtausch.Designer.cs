@@ -205,7 +205,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frm_Umtausch";
-            this.Text = "frm_Umtausch";
+            this.Text = "Umtausch";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frm_Umtausch_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();

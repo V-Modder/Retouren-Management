@@ -1,4 +1,6 @@
 ﻿using System.IO;
+using System.Drawing;
+using System.Text;
 using System.Web.Script.Serialization;
 
 namespace ApplicationSettings
@@ -6,10 +8,11 @@ namespace ApplicationSettings
     public class MySettings : AppSettings<MySettings>
     {
         private string dbPath;
+        private string database;
         private string dbuser;
         private string dbpass;
         private string outputfolder;
-        private string database;
+        private Point frm_Start_Position;
 
         /// <summary>
         /// Gibt den Pfad zur Datenbank wieder, oder legt diesen fest
@@ -18,6 +21,15 @@ namespace ApplicationSettings
         {
             get { return dbPath; }
             set { dbPath = value; }
+        }
+
+        /// <summary>
+        /// Gibt den Name der Datenbank an, oder legt diesen Fest
+        /// </summary>
+        public string Database
+        {
+            get { return database; }
+            set { database = value; }
         }
 
         /// <summary>
@@ -39,7 +51,7 @@ namespace ApplicationSettings
         }
 
         /// <summary>
-        /// Gibt den Ausgabeordner an, oder legt diesen Fest
+        /// Gibt den Ausgabeordner wieder, oder legt diesen Fest
         /// </summary>
         public string Outputfolder
         {
@@ -48,13 +60,14 @@ namespace ApplicationSettings
         }
 
         /// <summary>
-        /// Gibt den Name der Datenbank an, oder legt diesen Fest
+        /// Gibt die Position des frm_Start wieder, oder legt diesen Fest
         /// </summary>
-        public string Database
+        public Point Frm_Start_Position
         {
-            get { return database; }
-            set { database = value; }
+            get { return frm_Start_Position; }
+            set { frm_Start_Position = value; }
         }
+
     }
 
     public class AppSettings<T> where T : new()
@@ -63,12 +76,20 @@ namespace ApplicationSettings
 
         public void Save(string fileName = DEFAULT_FILENAME)
         {
-            File.WriteAllText(fileName, (new JavaScriptSerializer()).Serialize(this));
+            StringBuilder sb = new StringBuilder();
+            new JavaScriptSerializer().Serialize(this, sb);
+            sb.Replace("\",", "\",\n");
+            File.WriteAllText(fileName, sb.ToString());
+            sb.Clear();
         }
 
         public static void Save(T pSettings, string fileName = DEFAULT_FILENAME)
         {
-            File.WriteAllText(fileName, (new JavaScriptSerializer()).Serialize(pSettings));
+            StringBuilder sb = new StringBuilder();
+            new JavaScriptSerializer().Serialize(pSettings, sb);
+            sb.Replace("\",", "\",\n");
+            File.WriteAllText(fileName, sb.ToString());
+            sb.Clear();
         }
 
         public static T Load(string fileName = DEFAULT_FILENAME)

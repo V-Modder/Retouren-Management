@@ -44,7 +44,8 @@
             // 
             // chk_move
             // 
-            this.chk_move.Location = new System.Drawing.Point(122, 40);
+            this.chk_move.Location = new System.Drawing.Point(117, 40);
+            this.chk_move.Margin = new System.Windows.Forms.Padding(0);
             this.chk_move.Name = "chk_move";
             this.chk_move.Size = new System.Drawing.Size(10, 10);
             this.chk_move.TabIndex = 1;
@@ -54,7 +55,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(139, 50);
+            this.ClientSize = new System.Drawing.Size(130, 50);
             this.Controls.Add(this.chk_move);
             this.Controls.Add(this.btn_start);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -62,6 +63,8 @@
             this.ShowInTaskbar = false;
             this.Text = "Form1";
             this.TopMost = true;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frm_Start_FormClosing);
+            this.Load += new System.EventHandler(this.frm_Start_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.frm_Start_MouseDown);
             this.ResumeLayout(false);
 

@@ -318,7 +318,8 @@
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.Name = "frm_Kunde";
-            this.Text = "frm_Kunde";
+            this.ShowIcon = false;
+            this.Text = "Kunde";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frm_Kunde_FormClosing);
             this.Load += new System.EventHandler(this.frm_Kunde_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frm_Kunde_KeyDown);

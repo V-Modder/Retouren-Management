@@ -26,15 +26,23 @@ namespace Retouren_Management
         }
 
         /// <summary>
-        /// btn_start wurde gedrückt
+        /// frm_Start wird geschlossen
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btn_start_Click(object sender, EventArgs e)
+        private void frm_Start_FormClosing(object sender, FormClosingEventArgs e)
         {
-            frm_Suchen s = new frm_Suchen(this);
-            s.Show();
-            this.Hide();
+            Retouren_Management.Program.Settings.Save();
+        }
+
+        /// <summary>
+        /// frm_Start wird geöffnet
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frm_Start_Load(object sender, EventArgs e)
+        {
+            this.Location = Retouren_Management.Program.Settings.Frm_Start_Position;
         }
 
         /// <summary>
@@ -48,7 +56,20 @@ namespace Retouren_Management
             {
                 ReleaseCapture();
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+                Retouren_Management.Program.Settings.Frm_Start_Position = this.Location;
             }
+        }
+
+        /// <summary>
+        /// btn_start wurde gedrückt
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btn_start_Click(object sender, EventArgs e)
+        {
+            frm_Suchen s = new frm_Suchen(this);
+            s.Show();
+            this.Hide();
         }
         #endregion
     }
