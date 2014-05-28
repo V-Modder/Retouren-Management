@@ -1,7 +1,8 @@
 #Retouren-Management
 
 ##ToDo
-Datenbankverbing sowie Zugangsdaten verschlüsseln<br /><br /><br />
+- Größe des frm_Start anpassen -> Button.png anpassen<br />
+- (Datenbankverbing sowie Zugangsdaten verschlüsseln)<br /><br /><br />
 
 ##Bedienungs Hinweise
 

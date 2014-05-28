@@ -92,6 +92,11 @@ namespace Retouren_Management
             }
         }
 
+        /// <summary>
+        /// Globaler Tastatur Hook
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void gkh_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F6)

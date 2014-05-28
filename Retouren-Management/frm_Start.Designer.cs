@@ -35,8 +35,9 @@
             // 
             // btn_start
             // 
+            this.btn_start.BackgroundImage = global::Retouren_Management.Properties.Resources.Button;
+            this.btn_start.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btn_start.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn_start.Image = global::Retouren_Management.Properties.Resources.Button;
             this.btn_start.Location = new System.Drawing.Point(0, 0);
             this.btn_start.Name = "btn_start";
             this.btn_start.Size = new System.Drawing.Size(318, 47);
