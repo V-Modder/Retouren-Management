@@ -11,6 +11,10 @@ namespace Retouren_Management
         #region Klassen Variablen
         private int rechnr = 0;
         private frm_Start start;
+        private SqlConnection myConnection = new SqlConnection("server=" + Retouren_Management.Program.Settings.DbPath +
+                                                               ";database=" + Retouren_Management.Program.Settings.Database +
+                                                               ";UID=" + Retouren_Management.Program.Settings.Dbuser +
+                                                               ";password=" + Retouren_Management.Program.Settings.Dbpass);
         #endregion
 
         #region Form Handling
@@ -33,10 +37,6 @@ namespace Retouren_Management
         /// <param name="e"></param>
         private void frm_Kunde_Load(object sender, EventArgs e)
         {
-            SqlConnection myConnection = new SqlConnection("server=" + Retouren_Management.Program.Settings.DbPath +
-                                                           ";database=" + Retouren_Management.Program.Settings.Database +
-                                                           ";UID=" + Retouren_Management.Program.Settings.Dbuser +
-                                                           ";password=" +Retouren_Management.Program.Settings.Dbpass);
             try
             {
                 myConnection.Open();
@@ -72,7 +72,9 @@ namespace Retouren_Management
                     dgv_artikel.Rows.Add(myReader["cArtNr"].ToString(), myReader["fVKPreis"].ToString());
                 }
                 myReader.Close();
-                txt_zuruck.Focus();
+                myCommand.Dispose();
+                myConnection.Close();
+                dgv_zuruck.Focus();
             }
             catch (Exception ee)
             {
@@ -87,6 +89,7 @@ namespace Retouren_Management
         /// <param name="e"></param>
         private void frm_Kunde_FormClosing(object sender, FormClosingEventArgs e)
         {
+            myConnection.Close();
             start.Show();
         }
         
@@ -131,8 +134,32 @@ namespace Retouren_Management
         {
             Umtausch();
         }
-        #endregion
 
+        /// <summary>
+        /// EAN wurde eingegeben und Enter wurde gedrückt
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dgv_zuruck_CellLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 0 && dgv_zuruck[e.ColumnIndex, e.RowIndex].Value != null && dgv_zuruck[e.ColumnIndex, e.RowIndex].Value.ToString() != "")
+            {
+                try
+                {
+                    myConnection.Open();
+                    SqlCommand myCommand = new SqlCommand("select cArtNr, cBarcode from tartikel where cBarcode=" + dgv_zuruck[e.ColumnIndex, e.RowIndex].Value.ToString(), myConnection);
+                    SqlDataReader rdr = myCommand.ExecuteReader();
+                    dgv_zuruck[e.ColumnIndex + 1, e.RowIndex].Value = rdr["cArtNr"].ToString();
+                    rdr.Close();
+                    myCommand.Dispose();
+                }
+                catch (Exception ee)
+                {
+                    MessageBox.Show(ee.Message);
+                }
+            }
+        }
+        #endregion
 
         #region Klassen Methoden
         /// <summary>
@@ -144,14 +171,19 @@ namespace Retouren_Management
             StringBuilder sb = new StringBuilder();
             sb.AppendFormat("Datum: {0}\n\n", DateTime.Now.Date.ToShortDateString());
             sb.AppendFormat("Rechnungs-Nr: {0}\n", txt_rechnungsnr.Text);
-            sb.AppendFormat("Kunden-Nr   : {0}\n", txt_kundennr.Text);
-            sb.AppendFormat("{0}\n{1} {2}\n{3}\n{4}, {5}\n{6}", txt_firma.Text, txt_vorname.Text, txt_name.Text, txt_strasse.Text, txt_plz.Text, txt_ort.Text, txt_land.Text);
-            sb.AppendLine("\nArtikel\n");
+            sb.AppendFormat("Kunden-Nr : {0}\n", txt_kundennr.Text);
+            sb.AppendFormat("{0}\n{1} {2}\n{3}\n{4}, {5}\n{6}\n\n", txt_firma.Text, txt_vorname.Text, txt_name.Text, txt_strasse.Text, txt_plz.Text, txt_ort.Text, txt_land.Text);
+            sb.AppendLine("\nArtikel\n------------------------------\n");
             foreach (DataGridViewRow row in dgv_artikel.Rows)
             {
                 sb.AppendLine(row.Cells[0].Value.ToString() + "\t" + row.Cells[1].Value.ToString());
             }
-            sb.AppendFormat("\nArtikel zurück\n{0}\n", txt_zuruck.Text);
+            sb.Append("\nArtikel zurück\n------------------------------\n\n\n");
+            foreach (DataGridViewRow row in dgv_zuruck.Rows)
+            {
+                sb.AppendLine(row.Cells[1].Value.ToString());
+            }
+            sb.Append("\n");
             return sb.ToString();
         }
 
@@ -163,7 +195,7 @@ namespace Retouren_Management
             try
             {
                 StreamWriter sw = new StreamWriter(Path.Combine(Retouren_Management.Program.Settings.Outputfolder, txt_rechnungsnr.Text + ".txt"));
-                sw.Write(createTextFile() + "Erstattung!");
+                sw.Write(createTextFile() + "************************************\n*           Erstattung             *\n************************************");
                 sw.Close();
                 start.Show();
                 this.Close();
@@ -184,7 +216,7 @@ namespace Retouren_Management
                 frm_Umtausch umtausch = new frm_Umtausch();
                 umtausch.ShowDialog();
                 StreamWriter sw = new StreamWriter(Path.Combine(Retouren_Management.Program.Settings.Outputfolder, txt_rechnungsnr.Text + ".txt"));
-                sw.Write(createTextFile() + "Umtausch:\n" + umtausch.sMessage);
+                sw.Write(createTextFile() + "************************************\n*            Umtausch              *\n************************************\n\n" + "Neue Größe: " + umtausch.sMessage);
                 sw.Close();
                 start.Show();
                 this.Close();

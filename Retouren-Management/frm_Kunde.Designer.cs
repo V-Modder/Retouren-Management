@@ -49,12 +49,15 @@
             this.btn_erstattung = new System.Windows.Forms.Button();
             this.lbl_artikel = new System.Windows.Forms.Label();
             this.lbl_zurueck = new System.Windows.Forms.Label();
-            this.txt_zuruck = new System.Windows.Forms.TextBox();
             this.btn_umtausch = new System.Windows.Forms.Button();
             this.dgv_artikel = new System.Windows.Forms.DataGridView();
             this.artikelnr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vkpreis = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgv_zuruck = new System.Windows.Forms.DataGridView();
+            this.ean = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.artikelnummer = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_artikel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_zuruck)).BeginInit();
             this.SuspendLayout();
             // 
             // lbl_rechnungsnr
@@ -63,7 +66,7 @@
             this.lbl_rechnungsnr.Location = new System.Drawing.Point(13, 13);
             this.lbl_rechnungsnr.Name = "lbl_rechnungsnr";
             this.lbl_rechnungsnr.Size = new System.Drawing.Size(82, 13);
-            this.lbl_rechnungsnr.TabIndex = 0;
+            this.lbl_rechnungsnr.TabIndex = 29;
             this.lbl_rechnungsnr.Text = "Rechnungs-Nr :";
             // 
             // txt_rechnungsnr
@@ -238,14 +241,6 @@
             this.lbl_zurueck.TabIndex = 24;
             this.lbl_zurueck.Text = "Zurück";
             // 
-            // txt_zuruck
-            // 
-            this.txt_zuruck.Location = new System.Drawing.Point(12, 338);
-            this.txt_zuruck.Multiline = true;
-            this.txt_zuruck.Name = "txt_zuruck";
-            this.txt_zuruck.Size = new System.Drawing.Size(545, 119);
-            this.txt_zuruck.TabIndex = 25;
-            // 
             // btn_umtausch
             // 
             this.btn_umtausch.Location = new System.Drawing.Point(384, 463);
@@ -286,14 +281,38 @@
             this.vkpreis.Name = "vkpreis";
             this.vkpreis.ReadOnly = true;
             // 
+            // dgv_zuruck
+            // 
+            this.dgv_zuruck.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_zuruck.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ean,
+            this.artikelnummer});
+            this.dgv_zuruck.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.dgv_zuruck.Location = new System.Drawing.Point(12, 337);
+            this.dgv_zuruck.Name = "dgv_zuruck";
+            this.dgv_zuruck.Size = new System.Drawing.Size(545, 120);
+            this.dgv_zuruck.TabIndex = 0;
+            this.dgv_zuruck.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_zuruck_CellLeave);
+            // 
+            // ean
+            // 
+            this.ean.HeaderText = "EAN";
+            this.ean.Name = "ean";
+            // 
+            // artikelnummer
+            // 
+            this.artikelnummer.HeaderText = "Artikel-Nr";
+            this.artikelnummer.Name = "artikelnummer";
+            this.artikelnummer.ReadOnly = true;
+            // 
             // frm_Kunde
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(581, 495);
+            this.Controls.Add(this.dgv_zuruck);
             this.Controls.Add(this.dgv_artikel);
             this.Controls.Add(this.btn_umtausch);
-            this.Controls.Add(this.txt_zuruck);
             this.Controls.Add(this.lbl_zurueck);
             this.Controls.Add(this.lbl_artikel);
             this.Controls.Add(this.btn_erstattung);
@@ -315,16 +334,16 @@
             this.Controls.Add(this.lbl_kundennr);
             this.Controls.Add(this.txt_rechnungsnr);
             this.Controls.Add(this.lbl_rechnungsnr);
-            this.Enabled = false;
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.Name = "frm_Kunde";
             this.ShowIcon = false;
-            this.Text = "Kunde";
+            this.Text = "Retouren-Management";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frm_Kunde_FormClosing);
             this.Load += new System.EventHandler(this.frm_Kunde_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frm_Kunde_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_artikel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_zuruck)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -353,10 +372,12 @@
         private System.Windows.Forms.Button btn_erstattung;
         private System.Windows.Forms.Label lbl_artikel;
         private System.Windows.Forms.Label lbl_zurueck;
-        private System.Windows.Forms.TextBox txt_zuruck;
         private System.Windows.Forms.Button btn_umtausch;
         private System.Windows.Forms.DataGridView dgv_artikel;
         private System.Windows.Forms.DataGridViewTextBoxColumn artikelnr;
         private System.Windows.Forms.DataGridViewTextBoxColumn vkpreis;
+        private System.Windows.Forms.DataGridView dgv_zuruck;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ean;
+        private System.Windows.Forms.DataGridViewTextBoxColumn artikelnummer;
     }
 }

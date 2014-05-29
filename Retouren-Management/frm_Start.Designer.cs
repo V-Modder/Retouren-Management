@@ -67,7 +67,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frm_Start";
             this.ShowInTaskbar = false;
-            this.Text = "Form1";
+            this.Text = "Retouren-Management";
             this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frm_Start_FormClosing);
             this.Load += new System.EventHandler(this.frm_Start_Load);
