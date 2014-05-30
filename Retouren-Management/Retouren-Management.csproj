@@ -97,6 +97,7 @@
     <Compile Include="frm_Suchen.Designer.cs">
       <DependentUpon>frm_Suchen.cs</DependentUpon>
     </Compile>
+    <Compile Include="WaWiConnector.cs" />
     <EmbeddedResource Include="frm_Config.resx">
       <DependentUpon>frm_Config.cs</DependentUpon>
     </EmbeddedResource>

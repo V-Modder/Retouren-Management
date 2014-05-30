@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.SqlClient;
+using System.Collections;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
@@ -11,10 +12,7 @@ namespace Retouren_Management
         #region Klassen Variablen
         private int rechnr = 0;
         private frm_Start start;
-        private SqlConnection myConnection = new SqlConnection("server=" + Retouren_Management.Program.Settings.DbPath +
-                                                               ";database=" + Retouren_Management.Program.Settings.Database +
-                                                               ";UID=" + Retouren_Management.Program.Settings.Dbuser +
-                                                               ";password=" + Retouren_Management.Program.Settings.Dbpass);
+        private WaWiConnector myConnection;
         #endregion
 
         #region Form Handling
@@ -39,41 +37,29 @@ namespace Retouren_Management
         {
             try
             {
-                myConnection.Open();
-                SqlCommand myCommand = new SqlCommand(@"select trechnung.crechnungsnr, trechnung.tkunde_kkunde, trechnung.tBestellung_kBestellung, 
-                                                    tkunde.kkunde, tkunde.ckundennr, tkunde.cvorname, tkunde.cname, tkunde.cfirma, tkunde.cstrasse, 
-                                                    tkunde.cplz, tkunde.cort, tkunde.cland 
-                                                    from trechnung
-                                                    inner join tkunde
-                                                    on trechnung.tKunde_kKunde=tkunde.kkunde
-                                                    where trechnung.crechnungsnr=" + rechnr.ToString(), myConnection);
-                SqlDataReader myReader = myCommand.ExecuteReader();
-                string iBestellung = "0";
-                while (myReader.Read())
+                myConnection = new WaWiConnector();
+                int kBestellung = 0;
+                Hashtable ht = myConnection.ExecuteQKunde(rechnr, ref kBestellung);
+                if (ht.Count != 0)
                 {
-                    txt_rechnungsnr.Text = myReader["crechnungsnr"].ToString();
-                    txt_kundennr.Text = myReader["tkunde_kkunde"].ToString();
-                    txt_vorname.Text = myReader["cvorname"].ToString();
-                    txt_name.Text = myReader["cname"].ToString();
-                    txt_firma.Text = myReader["cfirma"].ToString();
-                    txt_strasse.Text = myReader["cstrasse"].ToString();
-                    txt_plz.Text = myReader["cplz"].ToString();
-                    txt_ort.Text = myReader["cort"].ToString();
-                    txt_land.Text = myReader["cland"].ToString();
-                    iBestellung = myReader["tBestellung_kBestellung"].ToString();
+                    txt_rechnungsnr.Text = ht["crechnungsnr"].ToString();
+                    txt_kundennr.Text = ht["tkunde_kkunde"].ToString();
+                    txt_vorname.Text = ht["cvorname"].ToString();
+                    txt_name.Text = ht["cname"].ToString();
+                    txt_firma.Text = ht["cfirma"].ToString();
+                    txt_strasse.Text = ht["cstrasse"].ToString();
+                    txt_plz.Text = ht["cplz"].ToString();
+                    txt_ort.Text = ht["cort"].ToString();
+                    txt_land.Text = ht["cland"].ToString();
+
+
+                    string[][] st = myConnection.ExecuteQArtikel(kBestellung);
+                    for (int i = 0; i < st[0].Length; i++)
+                    {
+                        dgv_artikel.Rows.Add(st[0][i], st[1][i]);
+                    }
+                    st = null;
                 }
-                myReader.Close();
-                myCommand = new SqlCommand(@"select cArtNr, fVKPreis
-                                            from tbestellpos
-                                            where tBestellung_kBestellung=" + iBestellung, myConnection);
-                myReader = myCommand.ExecuteReader();
-                while (myReader.Read())
-                {
-                    dgv_artikel.Rows.Add(myReader["cArtNr"].ToString(), myReader["fVKPreis"].ToString());
-                }
-                myReader.Close();
-                myCommand.Dispose();
-                myConnection.Close();
                 dgv_zuruck.Focus();
             }
             catch (Exception ee)
@@ -89,7 +75,7 @@ namespace Retouren_Management
         /// <param name="e"></param>
         private void frm_Kunde_FormClosing(object sender, FormClosingEventArgs e)
         {
-            myConnection.Close();
+            myConnection.Dispose();
             start.Show();
         }
         
@@ -146,22 +132,36 @@ namespace Retouren_Management
             {
                 try
                 {
-                    myConnection.Open();
-                    SqlCommand myCommand = new SqlCommand("select cArtNr, cBarcode from tartikel where cBarcode=" + dgv_zuruck[e.ColumnIndex, e.RowIndex].Value.ToString(), myConnection);
-                    SqlDataReader rdr = myCommand.ExecuteReader();
-                    dgv_zuruck[e.ColumnIndex + 1, e.RowIndex].Value = rdr["cArtNr"].ToString();
-                    rdr.Close();
-                    myCommand.Dispose();
+                    dgv_zuruck[e.ColumnIndex + 1, e.RowIndex].Value = myConnection.ExecuteQArtikelNr(dgv_zuruck[e.ColumnIndex, e.RowIndex].Value.ToString());
                 }
                 catch (Exception ee)
                 {
                     MessageBox.Show(ee.Message);
                 }
             }
+            CheckAllDataValid();
         }
         #endregion
 
         #region Klassen Methoden
+        /// <summary>
+        /// Prüft ob alle Artikelnummern erfasst wurden
+        /// </summary>
+        private void CheckAllDataValid()
+        {
+            foreach (DataGridViewRow row in dgv_zuruck.Rows)
+            {
+                if((row.Cells[1].Value == null || row.Cells[1].Value.ToString() == "") && !row.IsNewRow)
+                {
+                    btn_erstattung.Enabled = false;
+                    btn_umtausch.Enabled = false;
+                    return;
+                }
+            }
+            btn_erstattung.Enabled = true;
+            btn_umtausch.Enabled = true;
+        }
+
         /// <summary>
         /// Generiert eine Textdatei, die die Daten des Kundens, der Artikel, der Retoure und das Datum enthält
         /// </summary>

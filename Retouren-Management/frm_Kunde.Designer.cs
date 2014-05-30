@@ -215,6 +215,7 @@
             // 
             // btn_erstattung
             // 
+            this.btn_erstattung.Enabled = false;
             this.btn_erstattung.Location = new System.Drawing.Point(482, 463);
             this.btn_erstattung.Name = "btn_erstattung";
             this.btn_erstattung.Size = new System.Drawing.Size(75, 23);
@@ -243,6 +244,7 @@
             // 
             // btn_umtausch
             // 
+            this.btn_umtausch.Enabled = false;
             this.btn_umtausch.Location = new System.Drawing.Point(384, 463);
             this.btn_umtausch.Name = "btn_umtausch";
             this.btn_umtausch.Size = new System.Drawing.Size(75, 23);
