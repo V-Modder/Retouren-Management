@@ -30,22 +30,35 @@ namespace Retouren_Management
         private const string qArtikelNr = @"SELECT cArtNr, cBarcode 
                                            FROM tartikel 
                                            WHERE cBarcode=";
-
+        /// <summary>
+        /// Konstruktor
+        /// </summary>
         public WaWiConnector()
         {
             myConnection = new SqlConnection(ConnectionStr);
         }
 
+        /// <summary>
+        /// Destruktor
+        /// </summary>
         ~WaWiConnector()
         {
             myConnection.Close();
         }
 
+        /// <summary>
+        /// Aufräumen
+        /// </summary>
         public void Dispose()
         {
             myConnection.Close();
         }
 
+        /// <summary>
+        /// Gibt die Artikel anhand der BestellNr zurück
+        /// </summary>
+        /// <param name="kBestellung">BestellKey</param>
+        /// <returns>A string array (ArtNr, VKPreis)</returns>
         public string[][] ExecuteQArtikel(int kBestellung)
         {
             List<string> artnr = new List<string>();
@@ -68,6 +81,12 @@ namespace Retouren_Management
             return s;
         }
 
+        /// <summary>
+        /// Gibt den Kunden anhand der RechnungsNr zurück
+        /// </summary>
+        /// <param name="RechnungsNr">Rechnungs-Nummer</param>
+        /// <param name="kBestellung">returns BestellKey</param>
+        /// <returns>Hashtable mit Kundendaten</returns>
         public Hashtable ExecuteQKunde(int RechnungsNr, ref int kBestellung)
         {
             Hashtable rtn = new Hashtable();
@@ -93,6 +112,11 @@ namespace Retouren_Management
             return rtn;
         }
 
+        /// <summary>
+        /// Gibt die ArtikelNr anhand der EAN zurück
+        /// </summary>
+        /// <param name="EANcode">EAN-Code</param>
+        /// <returns>Artikel Nummer</returns>
         public string ExecuteQArtikelNr(string EANcode)
         {
             if (myConnection.State != System.Data.ConnectionState.Open)

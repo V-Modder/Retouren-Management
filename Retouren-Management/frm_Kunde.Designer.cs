@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_Kunde));
             this.lbl_rechnungsnr = new System.Windows.Forms.Label();
             this.txt_rechnungsnr = new System.Windows.Forms.TextBox();
             this.txt_kundennr = new System.Windows.Forms.TextBox();
@@ -336,10 +337,11 @@
             this.Controls.Add(this.lbl_kundennr);
             this.Controls.Add(this.txt_rechnungsnr);
             this.Controls.Add(this.lbl_rechnungsnr);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frm_Kunde";
-            this.ShowIcon = false;
             this.Text = "Retouren-Management";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frm_Kunde_FormClosing);
             this.Load += new System.EventHandler(this.frm_Kunde_Load);
