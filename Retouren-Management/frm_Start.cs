@@ -10,6 +10,7 @@ namespace Retouren_Management
     {
         #region Windows-API imports & Variablen
         private bool bIsRotated = false;
+        private bool bIsStarted = false;
         globalKeyboardHook gkh = new globalKeyboardHook();
         private const int WM_NCLBUTTONDOWN = 0xA1;
         private const int HT_CAPTION = 0x2;
@@ -48,7 +49,7 @@ namespace Retouren_Management
         {
             this.Location = Retouren_Management.Program.Settings.Frm_Start_Position;
             pic_doc.Image = RotateImage(pic_doc.Image, new PointF(pic_doc.Image.Width / 2, pic_doc.Image.Height / 2), 270);
-            gkh.HookedKeys.Add(Keys.F6);
+            gkh.HookedKeys.Add(Keys.F7);
             gkh.KeyDown += new KeyEventHandler(gkh_KeyDown);
         }
 
@@ -64,6 +65,20 @@ namespace Retouren_Management
                 ReleaseCapture();
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
                 Retouren_Management.Program.Settings.Frm_Start_Position = this.Location;
+            }
+        }
+
+        /// <summary>
+        /// Wird ausgelöst, wenn zum Form zurückgekehrt wird
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frm_Start_VisibleChanged(object sender, EventArgs e)
+        {
+            if (bIsStarted)
+            {
+                gkh.hook();
+                bIsStarted = false;
             }
         }
 
@@ -99,7 +114,7 @@ namespace Retouren_Management
         /// <param name="e"></param>
         private void gkh_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.F6)
+            if (e.KeyCode == Keys.F7)
                 Start();
         }
 
@@ -155,7 +170,9 @@ namespace Retouren_Management
         {
             frm_Suchen s = new frm_Suchen(this);
             s.Show();
+            gkh.unhook();
             this.Hide();
+            bIsStarted = true;
         }
         #endregion
     }

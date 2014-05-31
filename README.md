@@ -13,7 +13,7 @@ F04 - Vor
 
 ###frm_Start
 
-F06 - Started frm_Suchen (Globaler Tastatur Hook)
+F07 - Started frm_Suchen (Globaler Tastatur Hook)
 
 ###frm_Suchen
 

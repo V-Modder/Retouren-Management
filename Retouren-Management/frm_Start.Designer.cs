@@ -71,6 +71,7 @@
             this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frm_Start_FormClosing);
             this.Load += new System.EventHandler(this.frm_Start_Load);
+            this.VisibleChanged += new System.EventHandler(this.frm_Start_VisibleChanged);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.frm_Start_MouseDown);
             ((System.ComponentModel.ISupportInitialize)(this.pic_doc)).EndInit();
             this.ResumeLayout(false);
