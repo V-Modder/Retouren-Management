@@ -10,6 +10,8 @@ namespace Retouren_Management
     class WaWiConnector : IDisposable
     {
         private SqlConnection myConnection;
+
+        #region Abfragen
         private string ConnectionStr = "server=" + Retouren_Management.Program.Settings.DbPath +
                                        ";database=" + Retouren_Management.Program.Settings.Database +
                                        ";UID=" + Retouren_Management.Program.Settings.Dbuser +
@@ -27,9 +29,17 @@ namespace Retouren_Management
                                           FROM tbestellpos
                                           WHERE tBestellung_kBestellung=";
 
-        private const string qArtikelNr = @"SELECT cArtNr, cBarcode 
+        private const string qArtikelNr = @"SELECT cArtNr 
                                            FROM tartikel 
                                            WHERE cBarcode=";
+
+        private const string qZahlungsArt = @"select tzahlungsart.cname 
+                                                from tbestellung
+                                                inner join tzahlungsart 
+                                                on convert(varchar(20),tbestellung.kzahlungsart)=tzahlungsart.kzahlungsart
+                                                where tbestellung.kBestellung=";
+        #endregion
+
         /// <summary>
         /// Konstruktor
         /// </summary>
@@ -105,6 +115,7 @@ namespace Retouren_Management
                 rtn.Add("cplz", myReader["cplz"].ToString());
                 rtn.Add("cort", myReader["cort"].ToString());
                 rtn.Add("cland", myReader["cland"].ToString());
+                rtn.Add("czahlungsname", ExecuteQZahlungsArt(myReader["tBestellung_kBestellung"].ToString()));
                 kBestellung = Convert.ToInt32(myReader["tBestellung_kBestellung"].ToString());
             }
             myReader.Close();
@@ -126,6 +137,22 @@ namespace Retouren_Management
             rdr.Close();
             myCommand.Dispose();
             return rdr["cArtNr"].ToString();
+        }
+
+        /// <summary>
+        /// Gibt die ZahlungsMethode anhand der BestellNr zurück
+        /// </summary>
+        /// <param name="kBestellung"></param>
+        /// <returns></returns>
+        private string ExecuteQZahlungsArt(string kBestellung)
+        {
+            if (myConnection.State != System.Data.ConnectionState.Open)
+                myConnection.Open();
+            SqlCommand myCommand = new SqlCommand(qArtikelNr + kBestellung, myConnection);
+            SqlDataReader rdr = myCommand.ExecuteReader();
+            rdr.Close();
+            myCommand.Dispose();
+            return rdr["cname"].ToString();
         }
     }
 }

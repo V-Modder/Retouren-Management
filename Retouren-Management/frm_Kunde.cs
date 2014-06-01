@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Data.SqlClient;
 using System.Collections;
 using System.IO;
 using System.Text;
@@ -51,7 +50,7 @@ namespace Retouren_Management
                     txt_plz.Text = ht["cplz"].ToString();
                     txt_ort.Text = ht["cort"].ToString();
                     txt_land.Text = ht["cland"].ToString();
-
+                    txt_zahlung.Text = ht["czahlungsname"].ToString();
 
                     string[][] st = myConnection.ExecuteQArtikel(kBestellung);
                     for (int i = 0; i < st[0].Length; i++)

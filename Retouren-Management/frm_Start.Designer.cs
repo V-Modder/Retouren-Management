@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_Start));
             this.btn_start = new System.Windows.Forms.Button();
             this.pic_doc = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pic_doc)).BeginInit();
@@ -49,7 +50,7 @@
             // pic_doc
             // 
             this.pic_doc.Image = global::Retouren_Management.Properties.Resources.Pin;
-            this.pic_doc.Location = new System.Drawing.Point(262, 16);
+            this.pic_doc.Location = new System.Drawing.Point(244, 15);
             this.pic_doc.Name = "pic_doc";
             this.pic_doc.Size = new System.Drawing.Size(15, 15);
             this.pic_doc.TabIndex = 2;
@@ -60,11 +61,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(125)))), ((int)(((byte)(125)))));
             this.ClientSize = new System.Drawing.Size(319, 48);
             this.Controls.Add(this.pic_doc);
             this.Controls.Add(this.btn_start);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frm_Start";
             this.ShowInTaskbar = false;
             this.Text = "Retouren-Management";

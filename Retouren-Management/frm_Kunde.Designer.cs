@@ -57,6 +57,8 @@
             this.dgv_zuruck = new System.Windows.Forms.DataGridView();
             this.ean = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.artikelnummer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txt_zahlung = new System.Windows.Forms.TextBox();
+            this.lbl_zahlung = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_artikel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_zuruck)).BeginInit();
             this.SuspendLayout();
@@ -140,7 +142,7 @@
             // lbl_strasse
             // 
             this.lbl_strasse.AutoSize = true;
-            this.lbl_strasse.Location = new System.Drawing.Point(307, 13);
+            this.lbl_strasse.Location = new System.Drawing.Point(293, 13);
             this.lbl_strasse.Name = "lbl_strasse";
             this.lbl_strasse.Size = new System.Drawing.Size(61, 13);
             this.lbl_strasse.TabIndex = 10;
@@ -174,7 +176,7 @@
             // lbl_plz
             // 
             this.lbl_plz.AutoSize = true;
-            this.lbl_plz.Location = new System.Drawing.Point(307, 39);
+            this.lbl_plz.Location = new System.Drawing.Point(293, 43);
             this.lbl_plz.Name = "lbl_plz";
             this.lbl_plz.Size = new System.Drawing.Size(33, 13);
             this.lbl_plz.TabIndex = 14;
@@ -191,7 +193,7 @@
             // lbl_ort
             // 
             this.lbl_ort.AutoSize = true;
-            this.lbl_ort.Location = new System.Drawing.Point(307, 65);
+            this.lbl_ort.Location = new System.Drawing.Point(293, 65);
             this.lbl_ort.Name = "lbl_ort";
             this.lbl_ort.Size = new System.Drawing.Size(27, 13);
             this.lbl_ort.TabIndex = 16;
@@ -208,7 +210,7 @@
             // lbl_land
             // 
             this.lbl_land.AutoSize = true;
-            this.lbl_land.Location = new System.Drawing.Point(307, 91);
+            this.lbl_land.Location = new System.Drawing.Point(293, 91);
             this.lbl_land.Name = "lbl_land";
             this.lbl_land.Size = new System.Drawing.Size(37, 13);
             this.lbl_land.TabIndex = 18;
@@ -308,11 +310,29 @@
             this.artikelnummer.Name = "artikelnummer";
             this.artikelnummer.ReadOnly = true;
             // 
+            // txt_zahlung
+            // 
+            this.txt_zahlung.Location = new System.Drawing.Point(401, 114);
+            this.txt_zahlung.Name = "txt_zahlung";
+            this.txt_zahlung.Size = new System.Drawing.Size(156, 20);
+            this.txt_zahlung.TabIndex = 30;
+            // 
+            // lbl_zahlung
+            // 
+            this.lbl_zahlung.AutoSize = true;
+            this.lbl_zahlung.Location = new System.Drawing.Point(293, 117);
+            this.lbl_zahlung.Name = "lbl_zahlung";
+            this.lbl_zahlung.Size = new System.Drawing.Size(98, 13);
+            this.lbl_zahlung.TabIndex = 31;
+            this.lbl_zahlung.Text = "Zahlungsmethode :";
+            // 
             // frm_Kunde
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(581, 495);
+            this.Controls.Add(this.lbl_zahlung);
+            this.Controls.Add(this.txt_zahlung);
             this.Controls.Add(this.dgv_zuruck);
             this.Controls.Add(this.dgv_artikel);
             this.Controls.Add(this.btn_umtausch);
@@ -383,5 +403,7 @@
         private System.Windows.Forms.DataGridView dgv_zuruck;
         private System.Windows.Forms.DataGridViewTextBoxColumn ean;
         private System.Windows.Forms.DataGridViewTextBoxColumn artikelnummer;
+        private System.Windows.Forms.TextBox txt_zahlung;
+        private System.Windows.Forms.Label lbl_zahlung;
     }
 }
