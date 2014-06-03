@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Text;
 using System.Web.Script.Serialization;
+using EncryptString;
 
 namespace ApplicationSettings
 {
@@ -13,6 +14,7 @@ namespace ApplicationSettings
         private string dbpass;
         private string outputfolder;
         private Point frm_Start_Position;
+        private string sSecure = "MeiNUltraLangePasswort123";
 
         /// <summary>
         /// Gibt den Pfad zur Datenbank wieder, oder legt diesen fest
@@ -41,13 +43,29 @@ namespace ApplicationSettings
             set { dbuser = value; }
         }
 
-        /// <summary>
-        /// Gibt das Passwort der Datenbank wieder, oder legt dieses fest
-        /// </summary>
         public string Dbpass
         {
             get { return dbpass; }
             set { dbpass = value; }
+        }
+
+        /// <summary>
+        /// Gibt das Passwort der Datenbank wieder
+        /// </summary>
+        public string GetDbpass()
+        {
+            if (dbpass == null)
+                return null;
+            return StringCipher.Decrypt(dbpass, sSecure);
+        }
+
+        /// <summary>
+        /// Legt das Psswort der Datenbank fest
+        /// </summary>
+        /// <param name="value"></param>
+        public void SetDbpass(string value)
+        {
+            dbpass = StringCipher.Encrypt(value, sSecure);
         }
 
         /// <summary>
@@ -69,6 +87,7 @@ namespace ApplicationSettings
         }
 
     }
+    
 
     public class AppSettings<T> where T : new()
     {

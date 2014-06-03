@@ -37,7 +37,7 @@ namespace Retouren_Management
             Retouren_Management.Program.Settings.DbPath = txt_dbpath.Text;
             Retouren_Management.Program.Settings.Database = txt_db.Text;
             Retouren_Management.Program.Settings.Dbuser = txt_user.Text;
-            Retouren_Management.Program.Settings.Dbpass = txt_pass.Text;
+            Retouren_Management.Program.Settings.SetDbpass(txt_pass.Text);
             Retouren_Management.Program.Settings.Outputfolder = txt_output.Text;
             Retouren_Management.Program.Settings.Save();
             Application.Restart();

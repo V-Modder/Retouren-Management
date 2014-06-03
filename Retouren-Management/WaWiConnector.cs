@@ -15,7 +15,7 @@ namespace Retouren_Management
         private string ConnectionStr = "server=" + Retouren_Management.Program.Settings.DbPath +
                                        ";database=" + Retouren_Management.Program.Settings.Database +
                                        ";UID=" + Retouren_Management.Program.Settings.Dbuser +
-                                       ";password=" + Retouren_Management.Program.Settings.Dbpass;
+                                       ";password=" + Retouren_Management.Program.Settings.GetDbpass();
 
         private const string qKunde = @"SELECT trechnung.crechnungsnr, trechnung.tkunde_kkunde, trechnung.tBestellung_kBestellung, 
                                         tkunde.kkunde, tkunde.ckundennr, tkunde.cvorname, tkunde.cname, tkunde.cfirma, tkunde.cstrasse, 
