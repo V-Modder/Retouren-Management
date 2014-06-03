@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_Umtausch));
             this.rdb_s = new System.Windows.Forms.RadioButton();
             this.rdb_m = new System.Windows.Forms.RadioButton();
             this.rdb_xl = new System.Windows.Forms.RadioButton();
@@ -201,6 +202,7 @@
             this.Controls.Add(this.rdb_m);
             this.Controls.Add(this.rdb_s);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
