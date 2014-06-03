@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_Config));
             this.lbl_dbpath = new System.Windows.Forms.Label();
             this.txt_dbpath = new System.Windows.Forms.TextBox();
             this.txt_db = new System.Windows.Forms.TextBox();
@@ -163,8 +164,9 @@
             this.Controls.Add(this.txt_dbpath);
             this.Controls.Add(this.lbl_dbpath);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frm_Config";
-            this.Text = "frm_config";
+            this.Text = "Retouren-Management Config";
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -17,7 +17,7 @@ namespace Retouren_Management
             Settings = MySettings.Load();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            if (Settings.Database == null || Settings.Dbpass == null || Settings.DbPath == null ||
+            if (Settings.Database == null || Settings.GetDbpass() == null || Settings.DbPath == null ||
                 Settings.Dbuser == null || Settings.Outputfolder == null)
                 Application.Run(new frm_Config());          //Wenn keine Einstellungen vorhanden sind
             else
