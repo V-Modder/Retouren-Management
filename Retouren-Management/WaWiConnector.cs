@@ -85,6 +85,7 @@ namespace Retouren_Management
             }
             myReader.Close();
             myCommand.Dispose();
+            myCommand = null;
             string[][] s = new string[2][];
             s[0] = artnr.ToArray();
             s[1] = preis.ToArray();
@@ -120,6 +121,7 @@ namespace Retouren_Management
             }
             myReader.Close();
             myCommand.Dispose();
+            myCommand = null;
             return rtn;
         }
 
@@ -136,6 +138,7 @@ namespace Retouren_Management
             SqlDataReader rdr = myCommand.ExecuteReader();
             rdr.Close();
             myCommand.Dispose();
+            myCommand = null;
             return rdr["cArtNr"].ToString();
         }
 
@@ -152,6 +155,7 @@ namespace Retouren_Management
             SqlDataReader rdr = myCommand.ExecuteReader();
             rdr.Close();
             myCommand.Dispose();
+            myCommand = null;
             return rdr["cname"].ToString();
         }
     }
