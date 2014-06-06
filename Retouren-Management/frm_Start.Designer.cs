@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_Start));
             this.btn_start = new System.Windows.Forms.Button();
             this.pic_doc = new System.Windows.Forms.PictureBox();
+            this.tmr_Foreground = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pic_doc)).BeginInit();
             this.SuspendLayout();
             // 
@@ -56,6 +58,11 @@
             this.pic_doc.TabIndex = 2;
             this.pic_doc.TabStop = false;
             this.pic_doc.Click += new System.EventHandler(this.pic_doc_Click);
+            // 
+            // tmr_Foreground
+            // 
+            this.tmr_Foreground.Enabled = true;
+            this.tmr_Foreground.Tick += new System.EventHandler(this.tmr_Foreground_Tick);
             // 
             // frm_Start
             // 
@@ -84,6 +91,7 @@
 
         private System.Windows.Forms.Button btn_start;
         private System.Windows.Forms.PictureBox pic_doc;
+        private System.Windows.Forms.Timer tmr_Foreground;
     }
 }
 

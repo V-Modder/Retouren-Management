@@ -136,6 +136,17 @@ namespace Retouren_Management
                 bIsRotated = true;
             }
         }
+
+        /// <summary>
+        /// Setzt das Formular alle 100ms in den Vordergrund
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tmr_Foreground_Tick(object sender, EventArgs e)
+        {
+            this.TopLevel = true;
+            this.TopMost = true;
+        }
         #endregion  
       
         #region Klassen Methoden
